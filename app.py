@@ -1,3 +1,7 @@
+"""
+A simple module that provides number addition functionality.
+"""
+
 def add_numbers(a, b):
     """
     Adds two numbers and returns the result.
