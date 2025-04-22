@@ -1,6 +1,10 @@
 """
-A simple module that provides number addition functionality.
+A simple Flask web application that provides number addition functionality.
 """
+
+from flask import Flask, jsonify
+
+app = Flask(__name__)
 
 def add_numbers(a, b):
     """
@@ -8,5 +12,16 @@ def add_numbers(a, b):
     """
     return a + b
 
+@app.route('/')
+def home():
+    """Home endpoint that returns a welcome message."""
+    return jsonify({"message": "Welcome to the adding service!"})
+
+@app.route('/add/<int:a>/<int:b>')
+def add(a, b):
+    """Endpoint that adds two numbers."""
+    result = add_numbers(a, b)
+    return jsonify({"result": result})
+
 if __name__ == "__main__":
-    print("Sum of 2 and 3 is:", add_numbers(2, 3)) 
+    app.run(host='0.0.0.0', port=5000)
